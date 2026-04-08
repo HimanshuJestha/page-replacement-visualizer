@@ -2,6 +2,8 @@
 
 An interactive web application for visualizing and comparing various page replacement algorithms used in operating systems memory management.
 
+Live link -  https://himanshujestha.github.io/page-replacement-visualizer/
+
 ## Features
 
 - Visualize popular page replacement algorithms including:
