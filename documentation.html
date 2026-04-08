@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Page Replacement Visualizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Advanced Page Replacement Algorithm Visualizer</h1>
+            <p class="subtitle">Interactive visualization and comparison of memory management algorithms</p>
+        </header>
+        
+        <div class="tab-container">
+            <a href="index.html" class="tab">Visualization</a>
+            <a href="comparison.html" class="tab">Algorithm Comparison</a>
+            <a href="statistics.html" class="tab">Performance Statistics</a>
+            <a href="documentation.html" class="tab active">Documentation</a>
+        </div>
+        
+        <div class="tab-content active" id="documentation-tab">
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-book"></i> Documentation</h2>
+                <h3>About Page Replacement Algorithms</h3>
+                <p>Page replacement algorithms are used by operating systems to decide which memory pages to swap out when new pages need to be allocated. This visualizer helps you understand how different algorithms work.</p>
+                
+                <h3>Available Algorithms</h3>
+                <div class="algorithm-info">
+                    <h4>FIFO (First-In-First-Out)</h4>
+                    <p>Replaces the oldest page in memory. Simple to implement but may not be efficient as it doesn't consider usage patterns.</p>
+                    
+                    <h4>LRU (Least Recently Used)</h4>
+                    <p>Replaces the page that hasn't been used for the longest time. Better performance than FIFO but requires more overhead to track usage.</p>
+                    
+                    <h4>Optimal</h4>
+                    <p>Replaces the page that won't be used for the longest time in the future. Provides the theoretical minimum page faults but not practical as it requires future knowledge.</p>
+                    
+                    <h4>LFU (Least Frequently Used)</h4>
+                    <p>Replaces the page that has been used the least often. Good for some workloads but may not adapt quickly to changing access patterns.</p>
+                    
+                    <h4>MRU (Most Recently Used)</h4>
+                    <p>Replaces the most recently used page. Works well in some specific scenarios where older pages are more likely to be used again.</p>
+                    
+                    <h4>Second Chance</h4>
+                    <p>An enhancement to FIFO that gives pages a "second chance" before replacement. Pages are marked with a reference bit that is checked before replacement.</p>
+                    
+                    <h4>Clock (Approximation)</h4>
+                    <p>A practical implementation of Second Chance that uses a circular buffer (like a clock face) to track pages and their reference bits.</p>
+                </div>
+                
+                <h3>Algorithm Comparison Matrix</h3>
+                <table class="algorithm-matrix">
+                    <thead>
+                        <tr>
+                            <th>Algorithm</th>
+                            <th>Performance</th>
+                            <th>Implementation Complexity</th>
+                            <th>Use Cases</th>
+                            <th>Limitations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>FIFO</td>
+                            <td>Low-Medium</td>
+                            <td class="complexity-low">Low</td>
+                            <td>Simple systems, sequential access patterns</td>
+                            <td>Suffers from Belady's anomaly, doesn't consider usage frequency</td>
+                        </tr>
+                        <tr>
+                            <td>LRU</td>
+                            <td>High</td>
+                            <td class="complexity-medium">Medium</td>
+                            <td>General purpose, good for most workloads</td>
+                            <td>Higher implementation overhead, not ideal for cyclic access patterns</td>
+                        </tr>
+                        <tr>
+                            <td>Optimal</td>
+                            <td>Theoretical Best</td>
+                            <td>N/A</td>
+                            <td>Benchmark for other algorithms</td>
+                            <td>Requires future knowledge, not implementable in practice</td>
+                        </tr>
+                        <tr>
+                            <td>LFU</td>
+                            <td>Medium-High</td>
+                            <td class="complexity-medium">Medium</td>
+                            <td>Workloads with long-term frequency patterns</td>
+                            <td>Slow to adapt to changing patterns, high overhead</td>
+                        </tr>
+                        <tr>
+                            <td>MRU</td>
+                            <td>Low-Medium</td>
+                            <td class="complexity-medium">Medium</td>
+                            <td>Cyclic sequential access, some database scans</td>
+                            <td>Poor performance for most general workloads</td>
+                        </tr>
+                        <tr>
+                            <td>Second Chance</td>
+                            <td>Medium</td>
+                            <td class="complexity-medium">Medium</td>
+                            <td>General purpose, better than FIFO</td>
+                            <td>Still not as good as LRU for most cases</td>
+                        </tr>
+                        <tr>
+                            <td>Clock</td>
+                            <td>Medium</td>
+                            <td class="complexity-medium">Medium</td>
+                            <td>Practical implementation of Second Chance</td>
+                            <td>Similar limitations to Second Chance</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>How to Use</h3>
+                <ol>
+                    <li>Select an algorithm from the dropdown</li>
+                    <li>Set the number of frames (memory capacity)</li>
+                    <li>Enter a reference string or generate one with a specific pattern</li>
+                    <li>Click "Visualize" to see the algorithm in action</li>
+                    <li>Use the step buttons to go through each reference</li>
+                    <li>Compare algorithms to see which performs best for your reference string</li>
+                    <li>Generate statistics to see performance across different frame counts</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-mode-toggle" id="dark-mode-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <script src="common.js"></script>
+</body>
+</html> 

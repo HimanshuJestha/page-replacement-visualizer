@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Statistics - Page Replacement Visualizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Advanced Page Replacement Algorithm Visualizer</h1>
+            <p class="subtitle">Interactive visualization and comparison of memory management algorithms</p>
+        </header>
+        
+        <div class="tab-container">
+            <a href="index.html" class="tab">Visualization</a>
+            <a href="comparison.html" class="tab">Algorithm Comparison</a>
+            <a href="statistics.html" class="tab active">Performance Statistics</a>
+            <a href="documentation.html" class="tab">Documentation</a>
+        </div>
+        
+        <div class="tab-content active" id="statistics-tab">
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-chart-line"></i> Performance Statistics</h2>
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="stats-pattern-type">Reference Pattern</label>
+                        <select id="stats-pattern-type">
+                            <option value="random">Random</option>
+                            <option value="sequential">Sequential</option>
+                            <option value="locality">Temporal Locality</option>
+                            <option value="loop">Looping</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="stats-pattern-length">Length</label>
+                        <input type="number" id="stats-pattern-length" min="10" max="50" value="20">
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="stats-pattern-max">Max Page</label>
+                        <input type="number" id="stats-pattern-max" min="3" max="20" value="7">
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="stats-frames-range">Frames Range</label>
+                        <div class="range-selector">
+                            <span>Min: </span><input type="number" id="stats-min-frames" min="1" max="10" value="1" class="small-input">
+                            <span>Max: </span><input type="number" id="stats-max-frames" min="1" max="10" value="5" class="small-input">
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>Algorithms to Analyze</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="stats-algorithm" value="fifo" checked> FIFO</label>
+                            <label><input type="checkbox" name="stats-algorithm" value="lru" checked> LRU</label>
+                            <label><input type="checkbox" name="stats-algorithm" value="optimal" checked> Optimal</label>
+                            <label><input type="checkbox" name="stats-algorithm" value="lfu"> LFU</label>
+                            <label><input type="checkbox" name="stats-algorithm" value="mru"> MRU</label>
+                            <label><input type="checkbox" name="stats-algorithm" value="second-chance"> Second Chance</label>
+                            <label><input type="checkbox" name="stats-algorithm" value="clock"> Clock</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="run-statistics" class="btn btn-primary"><i class="fas fa-chart-bar"></i> Generate Statistics</button>
+                
+                <div class="statistics-results" id="statistics-results">
+                    <div class="stats-tabs">
+                        <div class="stats-tab active" data-stats-tab="chart">Chart View</div>
+                        <div class="stats-tab" data-stats-tab="table">Table View</div>
+                    </div>
+                    
+                    <div class="stats-content active" id="chart-view">
+                        <div class="chart-container">
+                            <h3>Page Faults vs Number of Frames</h3>
+                            <canvas class="stats-chart" id="fault-chart"></canvas>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <h3>Hit Ratio vs Number of Frames</h3>
+                            <canvas class="stats-chart" id="hit-ratio-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-content" id="table-view">
+                        <div class="stats-table-container">
+                            <h3>Performance Comparison Table</h3>
+                            <table class="stats-table" id="stats-table">
+                                <thead>
+                                    <tr>
+                                        <th>Frames</th>
+                                        <th>FIFO Faults</th>
+                                        <th>LRU Faults</th>
+                                        <th>Optimal Faults</th>
+                                        <th>LFU Faults</th>
+                                        <th>MRU Faults</th>
+                                        <th>Second Chance</th>
+                                        <th>Clock</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="stats-table-body">
+                                    <!-- Data will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-analysis">
+                        <h3>Analysis Insights</h3>
+                        <div id="stats-insights">
+                            <p>Generate statistics to see analysis insights.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-mode-toggle" id="dark-mode-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="common.js"></script>
+    <script src="statistics.js"></script>
+</body>
+</html> 
